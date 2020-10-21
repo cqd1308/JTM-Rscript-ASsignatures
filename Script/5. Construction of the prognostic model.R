@@ -14,7 +14,7 @@ load('clini.Rdata')
 rownames(clini)<-clini$Id
 load('ob.Rdata')
 group<-c(rep('Normal',59),rep('Tumor',513))
-ob<-rt[,-c(1:59)]
+ob<-ob[,-c(1:59)]
 samesample<-intersect(colnames(ob),clini$Id)
 ob<-ob[,samesample]
 clinical<-clini[samesample,]
@@ -181,3 +181,5 @@ legend('bottomright',c(paste0('AUC at 1 year: ',sprintf("%.3f", roctest$AUC[1]))
        col=c('#E64B35FF','#4DBBD5FF','#00A087FF','#3C5488FF'),lwd = 2,bty='n')
 dev.off()
 
+save(fitgene,file='fitgene.Rdata')
+save(coef,file='coef.Rdata')
