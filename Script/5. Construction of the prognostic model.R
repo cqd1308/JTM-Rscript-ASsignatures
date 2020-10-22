@@ -39,11 +39,9 @@ pdtrain$group<-as.factor(1)
 pdtest<-clini[rownames(test),][,c(1:6)]
 pdtest$group<-as.factor(2)
 pd<-rbind(pdtrain,pdtest)
-write.csv(pd,file='pd.csv',row.names = T)  ####write a csv file and change blank column into NA in this file, save the changed file named as "pd-nanote.csv"
-pdnote<-read.csv('pd-nanote.csv',sep=',',header = T,row.names = 1,na.strings = 'NA')
 #####generate baseline table
 a<-CreateTableOne(vars = c('Gender','Age','fustat','Smoking.history','Stage','futime'),
-                  data=pdnote,smd=T,
+                  data=pd,smd=T,
                   strata = 'group',
                   factorVars = c('Gender','fustat','Smoking.history','Stage'))
 summary(a)
